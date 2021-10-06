@@ -1,0 +1,16 @@
+C:\Users\Matheus\source\repos\zombie-dice\zombie-dice\bin\Debug\net5.0\zombie-dice.exe
+C:\Users\Matheus\source\repos\zombie-dice\zombie-dice\bin\Debug\net5.0\zombie-dice.deps.json
+C:\Users\Matheus\source\repos\zombie-dice\zombie-dice\bin\Debug\net5.0\zombie-dice.runtimeconfig.json
+C:\Users\Matheus\source\repos\zombie-dice\zombie-dice\bin\Debug\net5.0\zombie-dice.runtimeconfig.dev.json
+C:\Users\Matheus\source\repos\zombie-dice\zombie-dice\bin\Debug\net5.0\zombie-dice.dll
+C:\Users\Matheus\source\repos\zombie-dice\zombie-dice\bin\Debug\net5.0\ref\zombie-dice.dll
+C:\Users\Matheus\source\repos\zombie-dice\zombie-dice\bin\Debug\net5.0\zombie-dice.pdb
+C:\Users\Matheus\source\repos\zombie-dice\zombie-dice\obj\Debug\net5.0\zombie-dice.csproj.AssemblyReference.cache
+C:\Users\Matheus\source\repos\zombie-dice\zombie-dice\obj\Debug\net5.0\zombie-dice.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Matheus\source\repos\zombie-dice\zombie-dice\obj\Debug\net5.0\zombie-dice.AssemblyInfoInputs.cache
+C:\Users\Matheus\source\repos\zombie-dice\zombie-dice\obj\Debug\net5.0\zombie-dice.AssemblyInfo.cs
+C:\Users\Matheus\source\repos\zombie-dice\zombie-dice\obj\Debug\net5.0\zombie-dice.csproj.CoreCompileInputs.cache
+C:\Users\Matheus\source\repos\zombie-dice\zombie-dice\obj\Debug\net5.0\zombie-dice.dll
+C:\Users\Matheus\source\repos\zombie-dice\zombie-dice\obj\Debug\net5.0\ref\zombie-dice.dll
+C:\Users\Matheus\source\repos\zombie-dice\zombie-dice\obj\Debug\net5.0\zombie-dice.pdb
+C:\Users\Matheus\source\repos\zombie-dice\zombie-dice\obj\Debug\net5.0\zombie-dice.genruntimeconfig.cache
