@@ -10,26 +10,18 @@ namespace zombie_dice
     {
         //the die object is gonna be put into a list of dice and then accessed to it can be thrown
         public string Color;
-        public int Faces;
         public int Brain;
         public int Shot;
         public int Run;
-       
 
-        public Dice(string color, int brain, int shot, int run, int faces = 6)
+
+        public Dice(string color, int brain, int shot, int run)
         {
             Color = color;
-            Faces = faces;
             Brain = brain;
             Shot = shot;
             Run = run;
 
-            //a little test to see the number of faces is correct
-            if (Brain + Shot + Run != Faces)
-            {
-                Console.WriteLine("There's something wrong with your dice, please check.");
-            }
-         
 
         }
 
@@ -57,8 +49,13 @@ namespace zombie_dice
 
             return listDice;
         }
-
-       
+        
+        
+        
 
     }
+
+    
 }
+
+
