@@ -42,8 +42,8 @@ namespace zombie_dice
 
                         case 2:
                             player.DiceFromTheBox();
-                            Console.ReadLine();
                             Console.Clear();
+                            player.GetCurrentDice();
                             break;
 
                         case 3:

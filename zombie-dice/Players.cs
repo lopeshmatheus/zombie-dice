@@ -33,41 +33,39 @@ namespace zombie_dice
 
 
         }
-        public string GetCurrentDice()
-        {
-            var string10 = "__________________________________________";
-            var string11 = $"You are holding {this.CurrentDice.Count} dice";
-            var string12 = "";
-            var string13 = "";
-            foreach(Dice i in this.CurrentDice)
-            {
-                string12 += $"{i.Color}, ";
-                string13 += $"You got a {i}";
-            }
-            var string14 = ".";
 
-            var fullstring2 = string10 + string11 + string12 + string13+ string14;
-            return fullstring2;
+        public void GetCurrentDice()
+        {
+            Console.WriteLine("--------------------------");
+            Console.WriteLine("Here are the dice you got: \n");
+            foreach (Dice i in this.CurrentDice)
+            {
+                Console.WriteLine($"{i.Color}\n");
+            }
+            Console.WriteLine("--------------------------");
+            Console.ReadLine();
+            Console.Clear();
+
+            
+            
         }
         //this function is going to take 3 dice from the box and show the color to the player
         public void DiceFromTheBox()
         {
             var diceList = Dice.GetDice();
-            var randomList = RandomNumber.RandomGen(13);
+            var randomList = RandomNumber.RandomGen(diceList.Count);
             var randomIndex = 0;
 
             for(int i = 0; i < 3; i++)
             {
                 randomIndex = randomList.First();
-                randomList.RemoveAt(0);
                 this.CurrentDice.Add(diceList[randomIndex]);
+                diceList.RemoveAt(randomIndex);
+                randomList.RemoveAt(randomIndex);
+
+
             }
-            Console.Clear();
-            Console.WriteLine("Here are the dice you got: ");
-            foreach(Dice die in this.CurrentDice)
-            {
-                Console.WriteLine($"You have 1 {die.Color}");
-            }
+          
 
         }
         public void SortDiceFromTheBox()
