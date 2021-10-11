@@ -8,10 +8,11 @@ namespace zombie_dice
 {
     class RandomNumber
     {
-        static public int[] RandomGen(int maxNumber)
+        static public List<int> RandomGen(int maxNumber)
         {
             var nums = Enumerable.Range(0, maxNumber).ToArray();
             var rnd = new Random();
+            var numsList = new List<int> { };
 
             for (int i = 0; i < nums.Length; ++i)
             {
@@ -19,10 +20,11 @@ namespace zombie_dice
                 int temp = nums[randomIndex];
                 nums[randomIndex] = nums[i];
                 nums[i] = temp;
+                numsList = nums.ToList();
                 
                
             }
-            return nums;
+            return numsList;
             
         }
 
