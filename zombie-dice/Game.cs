@@ -44,9 +44,19 @@ namespace zombie_dice
                             player.DiceFromTheBox();
                             Console.Clear();
                             player.GetCurrentDice();
+                            player.playerInput();
+                            player.ShowFaces();
+                            
+                            Console.Clear();
                             break;
 
                         case 3:
+                            StaticDice.ShowDiceList();
+                            Console.ReadLine();
+                            Console.Clear();
+                            break;
+
+                        case 4:
                             roundPlayer = false;
                             Console.Clear();
                             break;
@@ -63,12 +73,14 @@ namespace zombie_dice
         {
             var str1 = "____________________________________\n\n\n";
             var str2 = "1. See your current info\n";
-            var str3 = "2. Get the dice from the box\n";
-            var str4 = "3. End your turn\n";
-            var str5 = "_____________________________________\n";
+            var str3 = "2. Get the dice from the box. \n";
+            var str4 = "3. Show the dice in the box. \n";
+            var str5 = "4. End your turn\n";
+            var str6 = "_____________________________________\n";
 
-            return str1 + str2 + str3 + str4 + str5;
+            return str1 + str2 + str3 + str4 + str5 + str6;
         }
+
     }
 }
 

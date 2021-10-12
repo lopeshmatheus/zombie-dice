@@ -10,42 +10,39 @@ namespace zombie_dice
     {
         //the die object is gonna be put into a list of dice and then accessed to it can be thrown
         public string Color;
-        public int Brain;
-        public int Shot;
-        public int Run;
+        public string[] Features = new string[6];
+        public string Face;
 
 
-        public Dice(string color, int brain, int shot, int run)
+        public Dice(string color, string[] features)
         {
             Color = color;
-            Brain = brain;
-            Shot = shot;
-            Run = run;
-
-
+            Features = features;
         }
 
         //a method to return me 13 dice that I'll need for the game
         static public List<Dice> GetDice()
         {
-            Dice redDice1 = new Dice("red", 1, 3, 2);
-            Dice redDice2 = new Dice("red", 1, 3, 2);
-            Dice redDice3 = new Dice("red", 1, 3, 2);
+            string[] redDiceFeatures = { "brain", "shot", "shot", "shot", "run", "run" };
+            Dice Dice1 = new Dice("red", redDiceFeatures);
+            Dice Dice2 = new Dice("red", redDiceFeatures);
+            Dice Dice3 = new Dice("red", redDiceFeatures);
 
-            Dice yellowDice1 = new Dice("yellow", 2, 2, 2);
-            Dice yellowDice2 = new Dice("yellow", 2, 2, 2);
-            Dice yellowDice3 = new Dice("yellow", 2, 2, 2);
-            Dice yellowDice4 = new Dice("yellow", 2, 2, 2);
+            string[] yellowDiceFeatures = { "brain", "brain", "shot", "shot", "run", "run" };
+            Dice Dice4 = new Dice("yellow", yellowDiceFeatures);
+            Dice Dice5 = new Dice("yellow", yellowDiceFeatures);
+            Dice Dice6 = new Dice("yellow", yellowDiceFeatures);
+            Dice Dice7 = new Dice("yellow", yellowDiceFeatures);
 
-            Dice greenDice1 = new Dice("green", 3, 1, 2);
-            Dice greenDice2 = new Dice("green", 3, 1, 2);
-            Dice greenDice3 = new Dice("green", 3, 1, 2);
-            Dice greenDice4 = new Dice("green", 3, 1, 2);
-            Dice greenDice5 = new Dice("green", 3, 1, 2);
-            Dice greenDice6 = new Dice("green", 3, 1, 2);
+            string[] greenDiceFeatures = { "brain", "brain", "brain", "shot", "run", "run" };
+            Dice Dice8 = new Dice("green", greenDiceFeatures);
+            Dice Dice9 = new Dice("green", greenDiceFeatures);
+            Dice Dice10 = new Dice("green", greenDiceFeatures);
+            Dice Dice11 = new Dice("green", greenDiceFeatures);
+            Dice Dice12 = new Dice("green", greenDiceFeatures);
+            Dice Dice13 = new Dice("green", greenDiceFeatures);
 
-            List<Dice> listDice = new List<Dice> { redDice1, redDice2, redDice3, yellowDice1, yellowDice2,yellowDice3,yellowDice4,
-            greenDice1, greenDice2, greenDice3, greenDice4, greenDice5};
+            List<Dice> listDice = new List<Dice> {Dice1, Dice2, Dice3, Dice4, Dice5, Dice6, Dice7, Dice8, Dice9, Dice10, Dice11, Dice12, Dice13 };
 
             return listDice;
         }

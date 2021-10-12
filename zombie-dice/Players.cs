@@ -15,6 +15,7 @@ namespace zombie_dice
         public int Runs { get; set; }
         public List<Dice> CurrentDice { get; set; } = new List<Dice>();
 
+
         public Player(string name)
         {
             Name = name;
@@ -46,37 +47,99 @@ namespace zombie_dice
             Console.ReadLine();
             Console.Clear();
 
-            
-            
+
+
         }
         //this function is going to take 3 dice from the box and show the color to the player
         public void DiceFromTheBox()
         {
-            var diceList = Dice.GetDice();
-            var randomList = RandomNumber.RandomGen(diceList.Count);
-            var randomIndex = 0;
+            
+            
+            
+           
+            var rnd = new Random();
+            
 
-            for(int i = 0; i < 3; i++)
+            for (int i = this.CurrentDice.Count; i < 3; i++)
             {
-                randomIndex = randomList.First();
-                this.CurrentDice.Add(diceList[randomIndex]);
-                diceList.RemoveAt(randomIndex);
-                randomList.RemoveAt(randomIndex);
-
+                int rndIndex = rnd.Next(0, StaticDice.diceList.Count - 1);
+                this.CurrentDice.Add(StaticDice.diceList[rndIndex]);
+                StaticDice.diceList.RemoveAt(rndIndex);
 
             }
-          
 
         }
-        public void SortDiceFromTheBox()
+        public void SortDiceFromTheHand()
         {
-            foreach(Dice die in this.CurrentDice)
+            var rnd = new Random();
+            
+
+            foreach (Dice die in this.CurrentDice)
             {
+                int rndCurrentDice = rnd.Next(0, 6);
+                die.Face = die.Features[rndCurrentDice];
+
+                switch (die.Face)
+                {
+                    case "brain":
+                        this.Brains++;
+                        StaticDice.diceList.Remove(die);
+                        StaticDice.garbageDiceList.Add(die);
+                        break;
+
+                    case "shot":
+                        this.Shots++;
+                        StaticDice.diceList.Remove(die);
+                        StaticDice.garbageDiceList.Add(die);
+                        break;
+
+                    case "run":
+                        this.Runs++;
+                        break;
+
+                }
 
             }
-        }
-        
-    }
-  
 
+
+
+
+        }
+        //this method will show the faces the palyer sorted
+        public void ShowFaces()
+        {
+            Console.Clear();
+            Console.WriteLine("-----------------------");
+            foreach (Dice die in this.CurrentDice)
+            {
+                Console.WriteLine($"{die.Face}\n");
+            }
+        }
+        public void playerInput()
+        {
+            Console.WriteLine("Do you want to throw the dice?");
+
+            string playerAnswer = Console.ReadLine();
+            playerAnswer = playerAnswer.ToLower();
+
+            switch(playerAnswer)
+            {
+                case "yes":
+                    this.SortDiceFromTheHand();
+                    ShowResults();
+                    Console.ReadLine();
+                    break;
+                case "no":
+                    break;
+            }
+        }
+        public void ShowResults()
+        {
+            Console.WriteLine($"You've got:\n");
+            foreach (Dice die in this.CurrentDice)
+            {
+                Console.WriteLine($"{die.Face}\n");
+            }
+        }
+    }
 }
