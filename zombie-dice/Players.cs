@@ -65,6 +65,7 @@ namespace zombie_dice
                 int rndIndex = rnd.Next(0, StaticDice.diceList.Count - 1);
                 this.CurrentDice.Add(StaticDice.diceList[rndIndex]);
                 StaticDice.diceList.RemoveAt(rndIndex);
+                StaticDice.garbageDiceList.Add(StaticDice.diceList[rndIndex]);
 
             }
 
@@ -83,14 +84,11 @@ namespace zombie_dice
                 {
                     case "brain":
                         this.Brains++;
-                        StaticDice.diceList.Remove(die);
-                        StaticDice.garbageDiceList.Add(die);
+                        
                         break;
 
                     case "shot":
-                        this.Shots++;
-                        StaticDice.diceList.Remove(die);
-                        StaticDice.garbageDiceList.Add(die);
+                        this.Shots++;                      
                         break;
 
                     case "run":
@@ -108,28 +106,28 @@ namespace zombie_dice
         //this method will show the faces the palyer sorted
         public void ShowFaces()
         {
-            Console.Clear();
-            Console.WriteLine("-----------------------");
+            Console.Clear();           
             foreach (Dice die in this.CurrentDice)
             {
                 Console.WriteLine($"{die.Face}\n");
             }
+
         }
         public void playerInput()
         {
-            Console.WriteLine("Do you want to throw the dice?");
+            Console.WriteLine("Do you want to throw the dice?\n1. Yes.\n2. No.\n");
+            
 
             string playerAnswer = Console.ReadLine();
             playerAnswer = playerAnswer.ToLower();
 
             switch(playerAnswer)
             {
-                case "yes":
-                    this.SortDiceFromTheHand();
-                    ShowResults();
-                    Console.ReadLine();
+                case "1":
+                    Console.Clear();
+                    this.SortDiceFromTheHand();                  
                     break;
-                case "no":
+                case "2":
                     break;
             }
         }
@@ -140,6 +138,38 @@ namespace zombie_dice
             {
                 Console.WriteLine($"{die.Face}\n");
             }
+        }
+        public void DiscartDice()
+        {
+            for (int i = this.CurrentDice.Count - 1; i >= 0; i--)
+            {
+                if (this.CurrentDice[i].Face != "run")
+                {
+                    this.CurrentDice.RemoveAt(i);
+                }
+            }
+            Console.ReadLine();
+            Console.Clear();
+        }
+        public void EndRound()
+        {
+            this.Score += this.Brains;
+
+        }
+        public bool CheckShots()
+        {
+            if (this.Shots >= 3)
+            {
+                this.Brains = 0;
+                Console.WriteLine($"That's a bummer! You just got {this.Shots} shots!\n You're dead! Next player's round!");
+                
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+            
         }
     }
 }
