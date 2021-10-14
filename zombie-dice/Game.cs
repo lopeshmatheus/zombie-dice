@@ -21,58 +21,68 @@ namespace zombie_dice
         static private void PlayerPresentation()
         {
             Player[] playerList = CreatePlayer.Create();
-            bool game = true;
-            while (game)
+            
+            
+            while(true)
             {
                 foreach (Player player in playerList)
                 {
-                    bool roundPlayer = true;
-                    while (roundPlayer)
+                    restart:
+                    Console.WriteLine($"-----------{player.Name}------------");
+                    Console.WriteLine("Here are your options of action\n");
+                    Console.WriteLine(MenuOptions());
+                    var userOption = int.Parse(Console.ReadLine());
+
+                    switch (userOption)
                     {
-                        Console.WriteLine($"-----------{player.Name}------------");
-                        Console.WriteLine("Here are your options of action\n");
-                        Console.WriteLine(MenuOptions());
-                        var userOption = int.Parse(Console.ReadLine());
+                        case 1:
+                            Console.Clear();
+                            Console.WriteLine(player.GetPlayerInfo());
+                            Console.ReadLine();
+                            Console.Clear();
+                            goto restart;
 
-
-
-                        switch (userOption)
-                        {
-                            case 1:
+                        case 2:
+                            player.DiceFromTheBox();
+                            if (player.Brains >= 13)
+                            {
                                 Console.Clear();
-                                Console.WriteLine(player.GetPlayerInfo());
-                                Console.ReadLine();
-                                Console.Clear();
-                                break;
+                                player.EndGame();
+                            }
+                            Console.Clear();
+                            player.GetCurrentDice();
+                            player.SortDiceFromTheHand();
+                            player.ShowFaces();
+                            player.DiscartDice();
+                            
+                            if (player.Shots >= 3)
+                            {                               
+                                goto ThreeShots;
+                            }
+                            goto restart;
 
-                            case 2:
-                                player.DiceFromTheBox();
-                                Console.Clear();
-                                player.GetCurrentDice();
-                                player.playerInput();
-                                player.ShowFaces();
-                                player.DiscartDice();
+                        case 3:
+                            StaticDice.ShowDiceList();
+                            Console.ReadLine();
+                            Console.Clear();
+                            goto restart;
 
-                                break;
+                        case 4:
+                            ThreeShots:
+                            player.EndRound();
+                            //roundPlayer = false;                               
+                            Console.Clear();
+                            break;
 
-                            case 3:
-                                StaticDice.ShowDiceList();
-                                Console.ReadLine();
-                                Console.Clear();
-                                break;
 
-                            case 4:
-                                player.EndRound();
-                                roundPlayer = false;
-                                Console.Clear();
-                                break;
-
-                        }
-                        roundPlayer = player.CheckShots();
                     }
+
                 }
             }
             
+
+
+
         }
         static private string MenuOptions()
         {
