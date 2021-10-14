@@ -52,22 +52,16 @@ namespace zombie_dice
         }
         //this function is going to take 3 dice from the box and show the color to the player
         public void DiceFromTheBox()
-        {
-            
-            
-            
-           
-            var rnd = new Random();
-            
-
+        {                      
+            var rnd = new Random();           
             for (int i = this.CurrentDice.Count; i < 3; i++)
             {
                 int rndIndex = rnd.Next(0, StaticDice.diceList.Count - 1);
                 this.CurrentDice.Add(StaticDice.diceList[rndIndex]);
                 StaticDice.diceList.RemoveAt(rndIndex);
                 StaticDice.garbageDiceList.Add(StaticDice.diceList[rndIndex]);
-
             }
+            this.Runs = 0;
 
         }
         public void SortDiceFromTheHand()
@@ -113,24 +107,7 @@ namespace zombie_dice
             }
 
         }
-        public void playerInput()
-        {
-            Console.WriteLine("Do you want to throw the dice?\n1. Yes.\n2. No.\n");
-            
-
-            string playerAnswer = Console.ReadLine();
-            playerAnswer = playerAnswer.ToLower();
-
-            switch(playerAnswer)
-            {
-                case "1":
-                    Console.Clear();
-                    this.SortDiceFromTheHand();                  
-                    break;
-                case "2":
-                    break;
-            }
-        }
+        
         public void ShowResults()
         {
             Console.WriteLine($"You've got:\n");
@@ -153,23 +130,42 @@ namespace zombie_dice
         }
         public void EndRound()
         {
-            this.Score += this.Brains;
 
-        }
-        public bool CheckShots()
-        {
             if (this.Shots >= 3)
             {
+                Console.Clear();
+                Console.WriteLine("That's too bad! You've just got 3 shots! You've lost all your brains.\n\nHere is your info:");
                 this.Brains = 0;
-                Console.WriteLine($"That's a bummer! You just got {this.Shots} shots!\n You're dead! Next player's round!");
-                
-                return false;
+                this.Runs = 0;
+                Console.WriteLine(this.GetPlayerInfo());
+                Console.ReadLine();
+                this.Shots = 0;
             }
             else
             {
-                return true;
+                Console.Clear();
+                Console.WriteLine("You chose to finish your round.\nHere is your info:\n");
+                Console.WriteLine(this.GetPlayerInfo());
+                Console.ReadLine();
+            }        
+
+            this.Score += this.Brains;
+            this.Brains = 0;
+            this.Shots = 0;
+            foreach(Dice die in StaticDice.garbageDiceList)
+            {
+                StaticDice.diceList.Add(die);
             }
+            StaticDice.garbageDiceList.Clear();
+
             
         }
+        public void EndGame()
+        {
+            Console.WriteLine($"Congratulations!{this.Name} You've eaten 13 brains and won the game!");
+            
+        }
+        
+        
     }
 }
