@@ -15,6 +15,9 @@ namespace zombie_dice
         public int Runs { get; set; }
         public List<Dice> CurrentDice { get; set; } = new List<Dice>();
 
+        ConsoleColor red = ConsoleColor.Red;
+        ConsoleColor yellow = ConsoleColor.Yellow;
+        ConsoleColor green = ConsoleColor.Green;
 
         public Player(string name)
         {
@@ -41,7 +44,25 @@ namespace zombie_dice
             Console.WriteLine("Here are the dice you got: \n");
             foreach (Dice i in this.CurrentDice)
             {
-                Console.WriteLine($"{i.Color}\n");
+                if (i.Color == "red")
+                {
+                    Console.ForegroundColor = red;
+                    Console.WriteLine($"{i.Color.ToUpper()}\n");
+                    Console.ResetColor();
+                }
+                else if (i.Color == "yellow")
+                {
+                    Console.ForegroundColor = yellow;
+                    Console.WriteLine($"{i.Color.ToUpper()}\n");
+                    Console.ResetColor();
+                }
+                else if (i.Color == "green")
+                {
+                    Console.ForegroundColor = green;
+                    Console.WriteLine($"{i.Color.ToUpper()}\n");
+                    Console.ResetColor();
+                }
+
             }
             Console.WriteLine("--------------------------");
             Console.ReadLine();
@@ -103,20 +124,31 @@ namespace zombie_dice
             Console.Clear();           
             foreach (Dice die in this.CurrentDice)
             {
-                Console.WriteLine($"{die.Face}\n");
+                              
+                
+                if (die.Color == "red")
+                {
+                    Console.ForegroundColor = red;
+                    Console.WriteLine($"{die.Face.ToUpper()}\n");
+                    Console.ResetColor();
+                }
+                else if (die.Color == "yellow")
+                {
+                    Console.ForegroundColor = yellow;
+                    Console.WriteLine($"{die.Face.ToUpper()}\n");
+                    Console.ResetColor();
+                }
+                else if (die.Color == "green")
+                {
+                    Console.ForegroundColor = green;
+                    Console.WriteLine($"{die.Face.ToUpper()}\n");
+                    Console.ResetColor();
+                }
             }
             
 
-        }
-        
-        //public void ShowResults()
-        //{
-        //    Console.WriteLine($"You've got:\n");
-        //    foreach (Dice die in this.CurrentDice)
-        //    {
-        //        Console.WriteLine($"{die.Face}\n");
-        //    }
-        //}
+        }      
+      
         public void DiscartDice()
         {
             for (int i = this.CurrentDice.Count - 1; i >= 0; i--)
@@ -157,7 +189,9 @@ namespace zombie_dice
         public void LoseRound()
         {
             Console.Clear();
-            Console.WriteLine("That's too bad! You've just got 3 shots! You've lost all your brains.\n\nHere is your info:");
+            Console.ForegroundColor = red;
+            Console.WriteLine("POW! You've just been shot! Leave all your brain on the table.\n\n");
+            Console.ResetColor();
             this.Brains = 0;
             this.Runs = 0;
             Console.WriteLine(this.GetPlayerInfo());
