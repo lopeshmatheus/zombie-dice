@@ -10,20 +10,33 @@ namespace zombie_dice
     {
         static public Player[] Create()
         {
-            
-            Console.WriteLine("How many players are there?");
-            var playerNumber = int.Parse(Console.ReadLine());
-            Player[] playerArray = new Player[playerNumber];
-            Console.Clear();
+            Restart:
 
-            for (int i = 0; i < playerNumber; i++)
+            try
             {
-                Console.WriteLine($"Please, write the name of the {i +1}º player:");
-                playerArray[i] = new Player(Console.ReadLine());
-                Console.Clear();
                 
+
+                Console.WriteLine("How many players are there?");
+                var playerNumber = int.Parse(Console.ReadLine());
+                Player[] playerArray = new Player[playerNumber];
+                Console.Clear();
+
+                for (int i = 0; i < playerNumber; i++)
+                {
+                    Console.WriteLine($"Please, write the name of the {i + 1}º player:");
+                    playerArray[i] = new Player(Console.ReadLine());
+                    Console.Clear();
+
+                }
+                return playerArray;
             }
-            return playerArray;
+            catch(Exception e)
+            {
+                Console.Clear();
+                Console.WriteLine(e.Message);
+                
+                goto Restart;
+            }
         }
         
 
