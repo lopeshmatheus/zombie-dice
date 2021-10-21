@@ -178,7 +178,8 @@ namespace zombie_dice
             this.Brains = 0;
             this.Shots = 0;
             this.Runs = 0;
-            foreach(Dice die in StaticDice.garbageDiceList)
+            this.CurrentDice.Clear();
+            foreach (Dice die in StaticDice.garbageDiceList)
             {
                 StaticDice.diceList.Add(die);
             }
@@ -198,6 +199,13 @@ namespace zombie_dice
             Console.ReadLine();
             Console.Clear();
             this.Shots = 0;
+            this.CurrentDice.Clear();
+
+            foreach (Dice die in StaticDice.garbageDiceList)
+            {
+                StaticDice.diceList.Add(die);
+            }
+            StaticDice.garbageDiceList.Clear();
         }
         public void EndGame()
         {
