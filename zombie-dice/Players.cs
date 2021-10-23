@@ -39,7 +39,7 @@ namespace zombie_dice
         }
 
         public void GetCurrentDice()
-        {
+        {      
             Console.WriteLine("--------------------------");
             Console.WriteLine("Here are the dice you got: \n");
             foreach (Dice i in this.CurrentDice)
